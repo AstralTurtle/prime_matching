@@ -14,15 +14,15 @@ class APIhelper{
     Uri uri = Uri.http('localhost:5000', "/");
     return http.get(uri).then((response) {
       // response to json'
-      
+      // print(response);
       var data = jsonDecode(response.body);
-      print(data["status"]);
+      print(data["code"]);
       // print(data["images"]);
       // have to refactor api properly xddd
-      if (data["status"] == 200) {
+      if (data["code"] == 200) {
         
         // get images array
-        var images = data["images"];
+        var images = data["response"]["images"];
         List<Image> imgList = [];
         for (var image in images) {
           var imgdata = Base64Decoder().convert(image);

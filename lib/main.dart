@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 // for testing
-import 'package:prime_matching/pages/Game/GamePage.dart';
+import 'package:prime_matching/pages/Game/gamePage.dart';
 
-import 'package:prime_matching/pages/Login/LoginPage.dart';
+import 'package:prime_matching/pages/Login/loginPage.dart';
 
 void main() {
   runApp(const MyApp());

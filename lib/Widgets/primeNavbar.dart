@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:prime_matching/pages/Game/GamePage.dart';
-import 'package:prime_matching/pages/Game/Leaderboard.dart';
-import 'package:prime_matching/pages/Admin/AdminPage.dart';
+import 'package:prime_matching/pages/Game/gamePage.dart';
+import 'package:prime_matching/pages/Game/leaderboard.dart';
+import 'package:prime_matching/pages/Admin/adminPage.dart';
 
 class PrimeNavbar extends StatefulWidget {
   const PrimeNavbar({super.key});

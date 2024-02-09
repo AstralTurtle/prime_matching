@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 
 import 'package:http/http.dart' as http;
+import 'package:prime_matching/models/graph.dart';
 class APIhelper{
   static APIhelper _instance = APIhelper._internal();
 
@@ -10,7 +11,7 @@ class APIhelper{
 
   APIhelper._internal();
 
-  Future<List<Image>> testLocal(){
+  Future<List<Graph>> testLocal(){
     Uri uri = Uri.http('localhost:5000', "/");
     return http.get(uri).then((response) {
       // response to json'
@@ -23,11 +24,12 @@ class APIhelper{
         
         // get images array
         var images = data["response"]["images"];
-        List<Image> imgList = [];
-        for (var image in images) {
-          var imgdata = Base64Decoder().convert(image);
-          imgList.add(Image.memory(imgdata));
-          
+        List<Graph> imgList = [];
+
+        for (int i = 0; i < images.length; i++){
+          var imgdata = Base64Decoder().convert(images[i]);
+
+          imgList.add(Graph(index: i, image: Image.memory(imgdata)));
         }
 
         print("success");

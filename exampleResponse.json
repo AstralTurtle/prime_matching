@@ -1,0 +1,12 @@
+{
+    "status": "ok",
+    "code" : 200   ,
+    "messages" : [],
+    "response": {
+        "images" : [
+            "(img in base64)",
+            "(img in base64)",
+            "(img in base64)"
+        ]
+    }
+}

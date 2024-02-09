@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+// for testing
+import 'package:prime_matching/pages/Game/GamePage.dart';
+
+import 'package:prime_matching/pages/Login/LoginPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +35,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const GamePage(),
     );
   }
 }

@@ -1,18 +1,41 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 
-
 import 'package:http/http.dart' as http;
 import 'package:prime_matching/models/graph.dart';
-class APIhelper{
+
+class APIhelper {
   static APIhelper _instance = APIhelper._internal();
 
   factory APIhelper() => _instance;
 
   APIhelper._internal();
 
-  Future<List<Graph>> testLocal(){
-    Uri uri = Uri.http('localhost:5000', "/");
+  Future<List<Graph>> getResponse() {
+    Uri uri = Uri.http('astralturtle.pythonanywhere.com', "/random");
+    return http.get(uri).then((response) {
+      var data = jsonDecode(response.body);
+      if (data["code"] == 200) {
+        var images = data["response"]["images"];
+        List<Graph> imgList = [];
+
+        for (int i = 0; i < images.length; i++) {
+          var imgdata = Base64Decoder().convert(images[i]);
+
+          imgList.add(
+              Graph(index: i, image: Image.memory(imgdata, fit: BoxFit.cover)));
+        }
+
+        // print("success");
+        return imgList;
+      } else {
+        throw Exception('Failed to get image');
+      }
+    });
+  }
+
+  Future<List<Graph>> testLocal() {
+    Uri uri = Uri.http('localhost:5000', "/random");
     return http.get(uri).then((response) {
       // response to json'
       // print(response);
@@ -21,12 +44,11 @@ class APIhelper{
       // print(data["images"]);
       // have to refactor api properly xddd
       if (data["code"] == 200) {
-        
         // get images array
         var images = data["response"]["images"];
         List<Graph> imgList = [];
 
-        for (int i = 0; i < images.length; i++){
+        for (int i = 0; i < images.length; i++) {
           var imgdata = Base64Decoder().convert(images[i]);
 
           imgList.add(Graph(index: i, image: Image.memory(imgdata)));
@@ -36,15 +58,11 @@ class APIhelper{
         return imgList;
       } else {
         throw Exception('Failed to get image');
-
       }
-    
     });
   }
 
   // Image<Convert>
-
-
 }
 
 void main(List<String> args) {
